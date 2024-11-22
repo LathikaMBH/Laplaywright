@@ -10,7 +10,7 @@ test('Browser Context Playwright test', async({browser})=>
 
 });
 
-test.only('Page Playwright test', async({page})=>
+test('Page Playwright test', async({page})=>
 {
     await page.goto("https://playwright.dev/");
     //get the title -> assert it

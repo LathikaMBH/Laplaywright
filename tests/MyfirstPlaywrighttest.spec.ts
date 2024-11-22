@@ -10,5 +10,5 @@ test('Browser Context Playwright test', async({browser})=>
 
 test('Page Playwright test', async({page})=>
 {
-    await page.goto("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    await page.goto("https://playwright.dev/");
 });

@@ -22,7 +22,8 @@ export default defineConfig({
     //webkit is safari engine provided by playwright
       browserName : 'chromium',
       //browserName : 'webkit',
-      //browsername : 'firefox',
+      //browserName : 'firefox',
+      headless : true,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',

@@ -58,13 +58,17 @@ test.only('UI controls', async({page})=>
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const userName = page.locator('#username');
     const signIn = page.locator('#signInBtn');
+
+    //select option from dropdown
     const dropdown = page.locator("select.form-control");
     await dropdown.selectOption("consult");
 
+    //select radio button and verify whether it selected or not
     await page.locator(".radiotextsty").last().click();
     await page.locator("[id='okayBtn']").click();
     await expect(page.locator(".radiotextsty").last()).toBeChecked();
 
+    //checked check box
     await page.locator("#terms").click();
     await expect(page.locator("#terms")).toBeChecked();
 

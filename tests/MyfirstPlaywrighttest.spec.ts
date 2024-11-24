@@ -52,3 +52,23 @@ test('Select one element amoung multiple same elements', async({page})=>
     console.log(alltitles);
 
 });
+
+test.only('UI controls', async({page})=>
+{
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const userName = page.locator('#username');
+    const signIn = page.locator('#signInBtn');
+    const dropdown = page.locator("select.form-control");
+    await dropdown.selectOption("consult");
+
+    await page.locator(".radiotextsty").last().click();
+    await page.locator("[id='okayBtn']").click();
+    await expect(page.locator(".radiotextsty").last()).toBeChecked();
+
+    await page.locator("#terms").click();
+    await expect(page.locator("#terms")).toBeChecked();
+
+
+   // await page.pause();
+
+});

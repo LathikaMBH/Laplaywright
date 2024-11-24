@@ -40,12 +40,15 @@ test('Browser Context Playwright test- validate error message', async({browser})
 
 //extract text from specific element when there are multiple elements
 
-test.only('Select one element amoung multiple same elements', async({page})=>
+test('Select one element amoung multiple same elements', async({page})=>
 {
+    const cardTitle = page.locator(".card-body a");
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     await page.locator('[name="username"]').fill("rahulshettyacademy");
     await page.locator('[name="password"]').fill("learning"); 
     await page.locator('[type="submit"]').click();
-    console.log(await page.locator(".card-body a").nth(0).textContent());
+    //console.log(await page.locator(".card-body a").nth(0).textContent());
+    const alltitles = await cardTitle.allTextContents();
+    console.log(alltitles);
 
 });

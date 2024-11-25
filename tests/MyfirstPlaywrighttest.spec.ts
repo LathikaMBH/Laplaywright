@@ -3,6 +3,7 @@ import { expect, test } from "@playwright/test";
 
 
 
+
 test('Browser Context Playwright test', async({browser})=>
 {
     const context = await browser.newContext();
@@ -58,6 +59,7 @@ test.only('UI controls', async({page})=>
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     const userName = page.locator('#username');
     const signIn = page.locator('#signInBtn');
+    const documentLink = page.locator("[href*= 'documents-request']");
 
     //select option from dropdown
     const dropdown = page.locator("select.form-control");
@@ -71,8 +73,38 @@ test.only('UI controls', async({page})=>
     //checked check box
     await page.locator("#terms").click();
     await expect(page.locator("#terms")).toBeChecked();
-
-
    // await page.pause();
+
+   await expect(documentLink).toHaveAttribute("class", "blinkingText");
+
+});
+
+test.only('Child window handling', async({browser})=>
+{
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+    const userName = page.locator('#username');
+    const signIn = page.locator('#signInBtn');
+    const documentLink = page.locator("[href*= 'documents-request']");
+
+    const [newPage] = await Promise.all([
+
+    //listing untill new page getting open in nw tab - lecture 20
+    context.waitForEvent('page'),
+    documentLink.click()
+    ])
+
+
+    
+    //here we extract the text from new page : Please email us at mentor@rahulshettyacademy.com with below template to receive response
+    // now we need to extract rahulshettyacademy.com from the above text.
+    const text = await newPage.locator(".red").textContent();
+    const arrayText1 = text?.split("@");
+    //const email = arrayText1[1].split(" ")[0]
+    //console.log(email);
+
+
 
 });

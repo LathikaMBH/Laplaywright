@@ -14,7 +14,7 @@ import { chromium, defineConfig, devices } from '@playwright/test';
 export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
- 
+  reporter: 'html',
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
@@ -24,9 +24,11 @@ export default defineConfig({
       //browserName : 'webkit',
       //browserName : 'firefox',
       headless : true,
+      screenshot : 'on',
+      trace : 'on',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
+    
   },
 
 
